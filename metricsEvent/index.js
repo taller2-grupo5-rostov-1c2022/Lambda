@@ -1,5 +1,4 @@
-const { TimeoutPromise } = require("./util/promise");
-const { info } = require("./util/log");
+const { error: logError, info } = require("./util/log");
 
 const eventHandlers = {
   passwordReset: require("./handlers/passwordReset").handler,
@@ -23,13 +22,15 @@ exports.handler = async (event, context) => {
       body: JSON.stringify(invalidTypeError),
     };
 
-  return await TimeoutPromise.resolveWithTimeout(
-    1000,
-    eventHandlers[type](event)
-  ).catch((error) => ({
-    statusCode: 500,
-    body: JSON.stringify({
-      error: error.message,
-    }),
-  }));
+  try {
+    return await eventHandlers[type](event);
+  } catch (e) {
+    logError(`Error handling event: `, e.message);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: e.message,
+      }),
+    };
+  }
 };

@@ -1,4 +1,4 @@
-const { Firestore, FieldValue } = require("@google-cloud/firestore");
+const { firestore, incrementField } = require("../firebase");
 const { error: logError, info, success } = require("../util/log");
 
 exports.handler = async (event) => {
@@ -6,14 +6,15 @@ exports.handler = async (event) => {
   try {
     const type = event?.type;
 
-    info(`Connecting to Firestore`);
-    const firestore = new Firestore();
-    info(`Connected to Firestore`);
+    info(`Updating Password Reset Metrics`);
 
-    await firestore.doc("metrics/users").update({
-      passwordReset: FieldValue.increment(1),
+    let documentRef = firestore.doc("metrics/users");
+
+    await documentRef.update({
+      passwordReset: incrementField(1),
     });
-    success(`Successfully handled event`);
+
+    success(`Successfully Updated Password Reset Metrics`);
 
     return {
       statusCode: 200,
