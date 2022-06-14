@@ -12,7 +12,17 @@ const invalidTypeError = {
   message: "The event type does not exist",
 };
 
-exports.handler = async (event, context) => {
+const tryParse = (obj) => {
+  try {
+    return JSON.parse(obj);
+  } catch (e) {
+    return undefined;
+  }
+};
+
+exports.handler = async (_event) => {
+  const event = _event?.type ? _event : tryParse(_event?.body);
+
   const type = event?.type;
   info(`Received event of type ${type}`);
 
