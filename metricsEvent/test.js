@@ -1,12 +1,20 @@
 exports.handler = async () => {
-  const event = {
+  const passwordResetEvent = {
     type: "passwordReset",
     payload: {
       email: "email@domain",
     },
   };
 
+  const testEvent = {
+    type: "test",
+  };
+
   await require("./index.js")
-    .handler(event)
+    .handler(passwordResetEvent)
+    .then((res) => console.log(res));
+
+  await require("./index.js")
+    .handler(testEvent)
     .then((res) => console.log(res));
 };

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "GOOGLE_APPLICATION_CREDENTIALS='google_credentials.json' node -e 'require(\"./test.js\").handler()'",
-    "zip": "zip -r deploy.zip index.js google_credentials.json node_modules/* handlers/*"
+    "start": "GOOGLE_APPLICATION_CREDENTIALS='./google_credentials.json' node -e 'require(\"./test.js\").handler()'",
+    "zip": "zip -r deploy.zip ."
   },
   "author": "",
   "license": "ISC",

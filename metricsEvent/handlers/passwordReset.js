@@ -1,14 +1,19 @@
 const { Firestore, FieldValue } = require("@google-cloud/firestore");
+const { error: logError, info, success } = require("../util/log");
 
 exports.handler = async (event) => {
+  info(`Handling event: ${JSON.stringify(event)}`);
   try {
     const type = event?.type;
 
+    info(`Connecting to Firestore`);
     const firestore = new Firestore();
+    info(`Connected to Firestore`);
 
-    firestore.doc("metrics/users").update({
+    await firestore.doc("metrics/users").update({
       passwordReset: FieldValue.increment(1),
     });
+    success(`Successfully handled event`);
 
     return {
       statusCode: 200,
@@ -17,6 +22,7 @@ exports.handler = async (event) => {
       }),
     };
   } catch (error) {
+    logError(`Error handling event`);
     return {
       statusCode: 500,
       body: JSON.stringify({
