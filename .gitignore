@@ -1,3 +1,10 @@
-.env
+# Secrets
+*.env
 *credentials.json
+
+# Generated Files
+*.zip
 node_modules
+
+# OS Files
+.DS_Store
