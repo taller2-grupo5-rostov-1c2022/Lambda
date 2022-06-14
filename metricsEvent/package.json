@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -e 'require(\"./test.js\").handler()'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "GOOGLE_APPLICATION_CREDENTIALS='google_credentials.json' node -e 'require(\"./test.js\").handler()'"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/firestore": "^5.0.2"
+  }
 }
