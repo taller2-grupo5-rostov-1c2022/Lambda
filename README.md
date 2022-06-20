@@ -2,6 +2,12 @@
 
 Lambda functions that run on AWS
 
+<!--
+
+Currently hosted by nzulaica on us-east-2
+
+-->
+
 ## Functions
 
 ### Metrics Event
