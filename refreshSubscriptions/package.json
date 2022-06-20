@@ -1,15 +1,16 @@
 {
-  "name": "resetpassword",
+  "name": "refreshsubscriptions",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node -e 'require(\"./test.js\").handler()'",
+    "start": "node -e 'require(\"./index.js\").handler()'",
     "zip": "zip -r deploy.zip ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase-admin": "^10.3.0"
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1"
   }
 }

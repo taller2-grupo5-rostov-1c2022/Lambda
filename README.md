@@ -2,22 +2,30 @@
 
 Lambda functions that run on AWS
 
-## Metrics Event
+## Functions
 
-updates some metric data on our metrics collection ( firestore )
+### Metrics Event
 
-### API Parameters
+Updates some metric data on our metrics collection ( firestore )
 
-- `type`: type of event being triggered
-- `payload`?: depends on the type of event
+- password resets
 
-#### Password Reset
+### Refresh Subscriptions
+
+Calls the refresh subscriptions endpoint on our Subscriptions API (songs-server)
+
+Should run once a day
+
+## Development
+
+### Installation
 
 ```
-{
-  type: "passwordReset",
-  payload: {
-    email: "email@domain",
-  },
-}
+npm i
 ```
+
+### Uploading to AWS
+
+Using AWS Lambda Console
+
+> make a zip including the node_modules
